@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crop Recommendation System</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/LOGO.png') }}"
+      type="image/png"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <!-- hero -->
+    <section class="gradient">
+      <div class="container col-xxl-8 px-4 pt-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 pt-5">
+          <div class="col-10 col-sm-8 col-lg-6">
+            <img
+              src="{{ url_for('static', filename='images/crophero.png') }}"
+              class="d-block mx-lg-auto img-fluid"
+              alt="Bootstrap Themes"
+              height="900"
+              width="1000"
+              loading="lazy"
+            />
+          </div>
+          <div class="col-lg-6">
+            <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3">
+              Welcome to our Crop Recommendation System.
+            </h1>
+            <p>
+              revolutionizing farming with advanced algorithms. Boost yields, conserve resources, and maximize profits effortlessly. Empowering farmers for a sustainable and prosperous future.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- form -->
+    <section>
+      <div
+        style="
+          width: 350px;
+          height: 50rem;
+          margin: 0px auto;
+          color: black;
+          border-radius: 25px;
+          padding: 10px 10px;
+        "
+      >
+        <form action="/crop" method="POST">
+          <div class="form-group">
+            <label for="Nitrogen" style="font-size: 17px"
+              ><b>Nitrogen</b></label
+            >
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="Nitrogen"
+              name="Nitrogen"
+              placeholder="Enter the value (example: 50)"
+              style="font-weight: bold"
+              required=""
+              min="0.00"
+              max="140.00"
+              oninput="validateN(this.value)"
+            />
+
+            <script>
+              function validateN(value) {
+                var errorMessage = "";
+
+                // Parse the input value as a float
+                var floatValue = parseFloat(value);
+
+                // Check if the value is NaN or outside the specified range
+                if (isNaN(floatValue) || floatValue < 0 || floatValue > 140) {
+                  errorMessage = "💡Value must be between 0 and 140💡";
+                }
+
+                // Display the error message
+                var errorElement = document.getElementById("error-message-a");
+                errorElement.textContent = errorMessage;
+              }
+            </script>
+            <div id="error-message-a" style="color: #808080"></div>
+          </div>
+          <div class="form-group">
+            <label for="Phosphorous" style="font-size: 17px"
+              ><b>Phosphorous</b></label
+            >
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="Phosphorous"
+              name="Phosphorous"
+              placeholder="Enter the value (example:50)"
+              style="font-weight: bold"
+              min="5.00"
+              max="145.00"
+              oninput="validateP(this.value)"
+            />
+            <script>
+              function validateP(value) {
+                var errorMessage = "";
+
+                // Parse the input value as a float
+                var floatValue = parseFloat(value);
+
+                // Check if the value is NaN or outside the specified range
+                if (isNaN(floatValue) || floatValue < 5 || floatValue > 145) {
+                  errorMessage = "💡Value must be between 5 and 145💡";
+                }
+
+                // Display the error message
+                var errorElement = document.getElementById("error-message-b");
+                errorElement.textContent = errorMessage;
+              }
+            </script>
+            <div id="error-message-b" style="color: #808080"></div>
+          </div>
+          <div class="form-group">
+            <label for="Pottasium" style="font-size: 17px"
+              ><b>Pottasium</b></label
+            >
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="Pottasium"
+              name="Pottasium"
+              placeholder="Enter the value (example:50)"
+              style="font-weight: bold"
+              min="5.00"
+              max="205.00"
+              oninput="validateK(this.value)"
+            />
+            <script>
+              function validateK(value) {
+                var errorMessage = "";
+
+                // Parse the input value as a float
+                var floatValue = parseFloat(value);
+
+                // Check if the value is NaN or outside the specified range
+                if (isNaN(floatValue) || floatValue < 5 || floatValue > 205) {
+                  errorMessage = "💡Value must be between 5 and 205💡";
+                }
+
+                // Display the error message
+                var errorElement = document.getElementById("error-message-c");
+                errorElement.textContent = errorMessage;
+              }
+            </script>
+            <div id="error-message-c" style="color: #808080"></div>
+          </div>
+          <div class="form-group">
+            <label for="Temperature" style="font-size: 17px"
+              ><b>Temperature</b></label
+            >
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="Temperature"
+              name="Temperature"
+              placeholder="Enter the value (example:50)"
+              style="font-weight: bold"
+              required=""
+              min="8.00"
+              max="43.00"
+              oninput="validatetemp(this.value)"
+            />
+            <script>
+              function validatetemp(value) {
+                var errorMessage = "";
+
+                // Parse the input value as a float
+                var floatValue = parseFloat(value);
+
+                // Check if the value is NaN or outside the specified range
+                if (isNaN(floatValue) || floatValue < 8 || floatValue > 43) {
+                  errorMessage = "💡Value must be between 8 and 43💡";
+                }
+
+                // Display the error message
+                var errorElement = document.getElementById("error-message-d");
+                errorElement.textContent = errorMessage;
+              }
+            </script>
+            <div id="error-message-d" style="color: #808080"></div>
+          </div>
+          <div class="form-group">
+            <label for="Humidity" style="font-size: 17px"
+              ><b>Humidity</b></label
+            >
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="Humidity"
+              name="Humidity"
+              placeholder="Enter the value (example:50)"
+              style="font-weight: bold"
+              required=""
+              min="14.00"
+              max="99.00"
+              oninput="validateH(this.value)"
+            />
+            <script>
+              function validateH(value) {
+                var errorMessage = "";
+
+                // Parse the input value as a float
+                var floatValue = parseFloat(value);
+
+                // Check if the value is NaN or outside the specified range
+                if (isNaN(floatValue) || floatValue < 14 || floatValue > 99) {
+                  errorMessage = "💡Value must be between 14 and 99💡";
+                }
+
+                // Display the error message
+                var errorElement = document.getElementById("error-message-e");
+                errorElement.textContent = errorMessage;
+              }
+            </script>
+            <div id="error-message-e" style="color: #808080"></div>
+          </div>
+          <div class="form-group">
+            <label for="pH" style="font-size: 17px"><b>ph level</b></label>
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="Ph"
+              name="Ph"
+              placeholder="Enter the value"
+              style="font-weight: bold"
+              required=""
+              min="3.50"
+              max="9.90"
+              oninput="validatePh(this.value)"
+            />
+            <script>
+              function validatePh(value) {
+                var errorMessage = "";
+
+                // Parse the input value as a float
+                var floatValue = parseFloat(value);
+
+                // Check if the value is NaN or outside the specified range
+                if (isNaN(floatValue) || floatValue < 3.5 || floatValue > 9.9) {
+                  errorMessage = "💡Value must be between 3.5 and 9.9💡";
+                }
+
+                // Display the error message
+                var errorElement = document.getElementById("error-message-f");
+                errorElement.textContent = errorMessage;
+              }
+            </script>
+            <div id="error-message-f" style="color: #808080"></div>
+          </div>
+          <div class="form-group">
+            <label for="Rainfall" style="font-size: 17px"
+              ><b>Rainfall (in mm)</b></label
+            >
+            <input
+              type="number"
+              step="0.01"
+              class="form-control"
+              id="Rainfall"
+              name="Rainfall"
+              placeholder="Enter the value"
+              style="font-weight: bold"
+              required=""
+              min="20.00"
+              max="298.00"
+              oninput="validateR(this.value)"
+            />
+            <script>
+              function validateR(value) {
+                var errorMessage = "";
+
+                // Parse the input value as a float
+                var floatValue = parseFloat(value);
+
+                // Check if the value is NaN or outside the specified range
+                if (isNaN(floatValue) || floatValue < 20 || floatValue > 298) {
+                  errorMessage = "💡Value must be between 20 and 298💡";
+                }
+
+                // Display the error message
+                var errorElement = document.getElementById("error-message-g");
+                errorElement.textContent = errorMessage;
+              }
+            </script>
+            <div id="error-message-g" style="color: #808080"></div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button
+              type="submit"
+              class="btn btn-info"
+              style="
+                color: black;
+                font-weight: bold;
+                width: 150px;
+                height: 50px;
+                border-radius: 12px;
+                font-size: 21px;
+                margin-top: 10px;
+              "
+            >
+              Predict
+            </button>
+          </div>
+        </form>
+        {% if result %}
+        <div
+          class="card bg-white"
+          style="width: 18rem; margin-top: 10px; margin-left: 15px"
+        >
+          <img
+            src="{{url_for('static', filename='images/img.jpg')}}"
+            class="card-img-top"
+            alt="..."
+          />
+          <div class="card-body">
+            <h5 class="card-title" font="white">
+              Recommend Crop for cultivation is:
+            </h5>
+            <p class="card-text">{{ result }}</p>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
